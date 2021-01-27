@@ -22,3 +22,25 @@ then if we put that file into the path, and name it the same as the function nam
 
 And for bonus points, it means that it'll work cross shell, since you can run our function "binary" inside fish for example, since it'll execute 
 bash behind the scenes.
+
+## Example
+
+You can copy what `fixtures/test-shell.nix` does but for an explaination:
+
+```nix
+{ pkgs ? import <nixpkgs> }:
+
+// you'll need a way to get shell2nix, builtins.fetchgit, copy and paste it, etc
+let 
+  shell2nix = ... ; 
+  
+  // This will take your script.sh and generate a nix derivation
+  drv = shell2nix ./path/to/your/script.sh
+
+  // This will take the generated derivation and get the generated paths,
+  // so for `fixtures/test-shell.nix` this will return [sayhi saybye]
+  paths = pkgs.callPackage drv {}; 
+in mkShell {
+  buildInputs = [ // your normal inputs ] ++ paths // add the scripts to your path
+}
+```
