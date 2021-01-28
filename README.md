@@ -30,17 +30,17 @@ You can copy what `fixtures/test-shell.nix` does but for an explaination:
 ```nix
 { pkgs ? import <nixpkgs> }:
 
-// you'll need a way to get shell2nix, builtins.fetchgit, copy and paste it, etc
+# you'll need a way to get shell2nix, builtins.fetchgit, copy and paste it, etc
 let 
   shell2nix = ... ; 
   
-  // This will take your script.sh and generate a nix derivation
+  # This will take your script.sh and generate a nix derivation
   drv = shell2nix ./path/to/your/script.sh
 
-  // This will take the generated derivation and get the generated paths,
-  // so for `fixtures/test-shell.nix` this will return [sayhi saybye]
+  # This will take the generated derivation and get the generated paths,
+  # so for `fixtures/test-shell.nix` this will return [sayhi saybye]
   paths = pkgs.callPackage drv {}; 
 in mkShell {
-  buildInputs = [ // your normal inputs ] ++ paths // add the scripts to your path
+  buildInputs = [ // your normal inputs ] ++ paths # add the scripts to your path
 }
 ```
