@@ -32,7 +32,7 @@ You can copy what `fixtures/test-shell.nix` does but for an explaination:
 
 # you'll need a way to get shell2nix, builtins.fetchgit, copy and paste it, etc
 let 
-  shell2nix = ... ; 
+  shell2nix = "..." ; 
   
   # This will take your script.sh and generate a nix derivation
   drv = shell2nix ./path/to/your/script.sh;
@@ -41,6 +41,6 @@ let
   # so for `fixtures/test-shell.nix` this will return [sayhi saybye]
   paths = pkgs.callPackage drv {}; 
 in mkShell {
-  buildInputs = [ // your normal inputs ] ++ paths # add the scripts to your path
+  buildInputs = [ /* your normal inputs */ ] ++ paths # add the scripts to your path
 }
 ```
