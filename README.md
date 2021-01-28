@@ -41,6 +41,6 @@ let
   # so for `fixtures/test-shell.nix` this will return [sayhi saybye]
   paths = pkgs.callPackage drv {}; 
 in mkShell {
-  buildInputs = [ /* your normal inputs */ ] ++ paths # add the scripts to your path
+  buildInputs = [ /* your normal inputs */ ]; ++ paths # add the scripts to your path
 }
 ```
