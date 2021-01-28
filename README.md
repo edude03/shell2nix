@@ -35,7 +35,7 @@ let
   shell2nix = ... ; 
   
   # This will take your script.sh and generate a nix derivation
-  drv = shell2nix ./path/to/your/script.sh
+  drv = shell2nix ./path/to/your/script.sh;
 
   # This will take the generated derivation and get the generated paths,
   # so for `fixtures/test-shell.nix` this will return [sayhi saybye]
